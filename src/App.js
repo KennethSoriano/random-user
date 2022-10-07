@@ -36,6 +36,8 @@ function App() {
     }
     setPerson(newPerson)
     setLoading(false)
+    setTitle('name');
+    setValue(newPerson.name)
   }
 
   useEffect(() => {
@@ -43,8 +45,12 @@ function App() {
   }, [])
 
   const handleValue = (e) => {
-    console.log(e.target)
+    if(e.target.classList.contains('icon')){
+      const newVariable = e.target.dataset.label
+      setValue(person[newValue])
+    }
   }
+
   return (
     <main>
       <div className="block bcg-black"></div>
@@ -73,7 +79,7 @@ function App() {
               <FaLock />
             </button>
           </div>
-          <button className='btn' type='button'>
+          <button className='btn' type='button' onClick={getPerson}>
             {loading? 'loading...' : 'random user'}
           </button>
         </div>
